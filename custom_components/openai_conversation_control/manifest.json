@@ -1,0 +1,13 @@
+{
+  "domain": "openai_conversation_control",
+  "name": "OpenAI Conversation Agent Control",
+  "codeowners": ["@nabbl"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/openai_conversation_control",
+  "homekit": {},
+  "iot_class": "assumed_state",
+  "requirements": ["openai==0.27.8"],
+  "ssdp": [],
+  "zeroconf": []
+}

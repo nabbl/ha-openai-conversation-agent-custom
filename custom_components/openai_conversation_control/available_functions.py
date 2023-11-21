@@ -1,0 +1,157 @@
+available_functions = [
+    {
+        "name": "get_entities",
+        "description": "returns a list of home entities which can be passed to a function for requesting "
+        "the state of each entity in the list. You can define an entityType to narrow down the entities which are requested by the User. "
+        "For example when the user wants to know about a sensor for example it makes sense to call this function with the entityType: 'sensor' "
+        "This function must be called first if a user has requested the state or value of "
+        "an entity and you have not first been given a list of available entities",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "entity_type": {
+                    "type": "string",
+                    "description": "An entity type which we want to know about, for example 'light' or 'sensor'. If you want to know about all entities use the type 'all'",
+                    "enum": [
+                        "all",
+                        "light",
+                        "sensor",
+                        "binary_sensor",
+                        "switch",
+                        "automation",
+                        "media",
+                        "vacuum",
+                        "button",
+                        "camera",
+                        "climate",
+                        "input_boolean",
+                        "person",
+                        "scene",
+                        "timer",
+                    ],
+                },
+            },
+            "required": [],
+        },
+    },
+    {
+        "name": "get_entity_state",
+        "description": "returns the state and value of an entity."
+        "This function must be called first if a user has requested to get the state of "
+        "one or more entities and you have not first been given a list of available entities",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "entity_id": {
+                    "type": "string",
+                    "description": "A list of one or more entities",
+                },
+            },
+            "required": ["entity_id"],
+        },
+    },
+    {
+        "name": "turn_on_lights",
+        "description": "Send a request to a HomeAssistant Rest API to turn on lights. "
+        "you must use the get_entities function first to retrieve the list"
+        " of available lights.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "lights": {
+                    "type": "string",
+                    "description": "A list of one or more light entities",
+                },
+            },
+            "required": ["lights"],
+        },
+    },
+    {
+        "name": "turn_off_lights",
+        "description": "Sends a request to HomeAssistant to turn off lights. "
+        "you must use the get_entities function first to retrieve the list"
+        " of available lights.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "lights": {
+                    "type": "string",
+                    "description": "A list of one or more light entities",
+                },
+            },
+            "required": ["lights"],
+        },
+    },
+    {
+        "name": "broadcast_message",
+        "description": "This function is used if the user would like to broadcast a message"
+        "or have a media player say something with tts, send the users requested"
+        "message as the message parameter",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "media_player_id": {
+                    "type": "string",
+                    "description": "A list of media player entities to send to broadcast_message function",
+                },
+                "message": {
+                    "type": "string",
+                    "description": "The message to broadcast on the media player/s",
+                },
+            },
+            "required": ["media_player_id", "message"],
+        },
+    },
+    {
+        "name": "light_adjust",
+        "description": "Send a request to HomeAssistant to change the brightness of lights. "
+        "you must use the get_entities function first to retrieve the list"
+        " of available lights.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "lights": {
+                    "type": "string",
+                    "description": "A list of one or more light entities",
+                },
+                "brightness": {
+                    "type": "integer",
+                    "description": "percentage brightness to set a light to",
+                },
+            },
+            "required": ["lights", "brightness"],
+        },
+    },
+    {
+        "name": "close_shutters",
+        "description": "Send a request to HomeAssistant to close the shutters. "
+        "you must use the get_entities function first to retrieve the list"
+        " of available shutters.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "shutters": {
+                    "type": "string",
+                    "description": "A list of one or more shutter entities",
+                },
+            },
+            "required": ["shutters"],
+        },
+    },
+    {
+        "name": "open_shutters",
+        "description": "Sends a request to HomeAssistant to close the shutters. "
+        "you must use the get_entities function first to retrieve the list"
+        " of available shutters.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "shutters": {
+                    "type": "string",
+                    "description": "A list of one or more shutter entities",
+                },
+            },
+            "required": ["shutters"],
+        },
+    },
+]
