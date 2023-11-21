@@ -8,7 +8,9 @@
   "homekit": {},
   "iot_class": "assumed_state",
   "requirements": ["openai==0.27.8"],
+  "integration_type": "hub",
   "ssdp": [],
   "zeroconf": [],
-  "issue-tracker":"https://github.com/nabbl/ha-openai-conversation-agent-custom/issues"
+  "issue-tracker":"https://github.com/nabbl/ha-openai-conversation-agent-custom/issues",
+  "version": "0.0.1"
 }
