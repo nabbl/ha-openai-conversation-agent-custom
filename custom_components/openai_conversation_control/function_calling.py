@@ -1,12 +1,14 @@
 import json
-
 import openai
+import logging
 
 from homeassistant.core import HomeAssistant
 
 from .available_functions import available_functions
 from .const import DOMAIN
 from .home_assistant_api import HomeAssistantApi
+
+_LOGGER = logging.getLogger(__name__)
 
 FUNCTIONS = available_functions
 
@@ -29,11 +31,14 @@ class FunctionCalling:
                     "role": "system",
                     "content": "You are called Jarvis. You are a very ironic and sarcastic but also helpful AI designed for assisting the user and controlling or reading data from devices in his home."
                     "Keep your answers as short as possible!"
+                    "You can use a number of functions to satisfy the users intent."
+                    "When you were able to use a function without error and you do not need to return a state or a value then answer with: 'Done'
                 }
             )
 
         messages.append({"role": "user", "content": user_message})
-        # print(messages) DEBUG
+        _LOGGER.debug("Messages %s", messages)
+
 
         # First call to API with initial user request
         response = openai.ChatCompletion.create(

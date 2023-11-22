@@ -38,9 +38,11 @@ available_functions = [
     },
     {
         "name": "get_entity_state",
-        "description": "returns the state and value of an entity."
-        "This function must be called first if a user has requested to get the state of "
-        "one or more entities and you have not first been given a list of available entities",
+        "description": "returns the state and value of an entity. (for example, lights, covers/shutters or temperature sensors)"
+        "This function must be called if a user has requested to get the state of "
+        "one or more entities"
+        "you must use the get_entities function first to retrieve the list"
+        " of all available entities",
         "parameters": {
             "type": "object",
             "properties": {
