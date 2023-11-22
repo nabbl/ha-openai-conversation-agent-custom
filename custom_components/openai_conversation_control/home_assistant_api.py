@@ -76,7 +76,7 @@ class HomeAssistantApi:
         :return: state of entity
         """
         state = self.hass.states.get(entity_id)
-        return json.dumps(obj=state, cls=JSONEncoder)
+        return json.dumps({state: state.state})
 
     # call function with entity_id to toggle
     def toggle_device(self, entity_id: str):
