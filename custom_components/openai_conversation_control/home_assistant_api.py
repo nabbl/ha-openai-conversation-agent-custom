@@ -46,7 +46,7 @@ class HomeAssistantApi:
             "scene": "scene.",
             "timer": "timer.",
             "cover": "cover.",
-            "shutter": "cover."
+            "shutter": "cover.",
             "lock": "lock."
         }
         if entity_type == "all":
