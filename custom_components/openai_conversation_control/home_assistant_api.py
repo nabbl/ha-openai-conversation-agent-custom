@@ -45,6 +45,8 @@ class HomeAssistantApi:
             "person": "person.",
             "scene": "scene.",
             "timer": "timer.",
+            "cover": "cover.",
+            "shutter": "cover."
         }
         if entity_type == "all":
             return self.all_entities

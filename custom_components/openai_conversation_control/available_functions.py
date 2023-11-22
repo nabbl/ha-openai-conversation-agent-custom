@@ -28,6 +28,8 @@ available_functions = [
                         "person",
                         "scene",
                         "timer",
+                        "cover",
+                        "shutter"
                     ],
                 },
             },
