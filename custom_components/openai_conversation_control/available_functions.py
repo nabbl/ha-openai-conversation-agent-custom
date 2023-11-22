@@ -28,6 +28,9 @@ available_functions = [
                         "person",
                         "scene",
                         "timer",
+                        "shutter",
+                        "cover",
+                        "lock"
                     ],
                 },
             },

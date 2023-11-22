@@ -47,6 +47,7 @@ class HomeAssistantApi:
             "timer": "timer.",
             "cover": "cover.",
             "shutter": "cover."
+            "lock": "lock."
         }
         if entity_type == "all":
             return json.dumps({"action_not_clear": "Please be more specific."})
