@@ -76,7 +76,12 @@ class HomeAssistantApi:
         :return: state of entity
         """
         state = self.hass.states.get(entity_id)
-        return json.dumps({state: state.state})
+        if state is not None:
+            return json.dumps({"state": state.state})
+
+        return json.dumps(
+            {"action_not_performed": "Cant' find a device which fits the description"}
+        )
 
     # call function with entity_id to toggle
     def toggle_device(self, entity_id: str):

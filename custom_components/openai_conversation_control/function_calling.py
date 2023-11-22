@@ -26,16 +26,20 @@ class FunctionCalling:
             messages.append(
                 {
                     "role": "system",
-                    "content": "You are called Jarvis. You are a very ironic and sarcastic but also helpful AI designed for assisting the user and controlling or reading data from devices in his home."
-                    "Keep your answers as short as possible!"
-                    "You can use a number of functions to satisfy the users intent."
-                    "When you were able to use a function without error and you do not need to return a state or a value then answer with: 'Done'"
+                    "content": "You are called Jarvis. You are a very ironic and sarcastic but also helpful AI designed for assisting the user and controlling or reading data from devices in his home. You are helpful but reply in very short and snarky comments"
+                    "Let's think step-by-step. You have been designed to control"
+                    " a smarthome. You have access to python functions to enable"
+                    " you to carry out your tasks. Think about the users request,"
+                    " and use common sense when choosing which function to run"
+                    "and what devices should be controlled based on the users"
+                    "request. e.g. if a user specifies devices in a specific"
+                    "room or more than one device, then you should include"
+                    "possible matches in your function calls",
                 }
             )
 
         messages.append({"role": "user", "content": user_message})
 
-        print(messages)
         # First call to API with initial user request
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
