@@ -49,26 +49,25 @@ class HomeAssistantApi:
             "shutter": "cover."
         }
         if entity_type == "all":
-            return self.all_entities
+            return json.dumps({"action_not_clear": "Please be more specific."})
 
         if entity_type not in entity_type_dict:
             entity_type_dict[entity_type] = f"{entity_type}."
 
-        print(self.all_entities)
-
         try:
-            entity_list = [
+            entity_list: list[State] = [
                 entity
                 for entity in self.all_entities
                 if entity.entity_id.startswith(entity_type)
+                and entity.state != "unavailable"
             ]
 
         except KeyError:
             return f"Error, No entities of type {entity_type} found"
 
-        print(entity_list)
+        entity_ids = [state.entity_id for state in entity_list]
 
-        return json.dumps(obj=entity_list, cls=JSONEncoder)
+        return json.dumps(entity_ids)
 
     def get_entity_state(self, entity_id: str):
         """Pass in entity id to read state and value of device
