@@ -43,7 +43,7 @@ class FunctionCalling:
 
         # First call to API with initial user request
         response = openai.ChatCompletion.create(
-            model="gpt-4-0613",
+            model="gpt-3.5-turbo",
             messages=messages,
             functions=FUNCTIONS,
             function_call="auto",
@@ -76,7 +76,7 @@ class FunctionCalling:
             )
 
             second_response = openai.ChatCompletion.create(
-                model="gpt-4-0613",
+                model="gpt-3.5-turbo",
                 messages=messages,
                 functions=FUNCTIONS,
                 function_call="auto",
@@ -109,7 +109,7 @@ class FunctionCalling:
                 }
             )
             third_response = openai.ChatCompletion.create(
-                model="gpt-4-0613",
+                model="gpt-3.5-turbo",
                 messages=messages,
                 functions=FUNCTIONS,
                 function_call="auto",
