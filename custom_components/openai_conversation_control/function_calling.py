@@ -1,14 +1,11 @@
 import json
 import openai
-import logging
 
 from homeassistant.core import HomeAssistant
 
 from .available_functions import available_functions
 from .const import DOMAIN
 from .home_assistant_api import HomeAssistantApi
-
-_LOGGER = logging.getLogger(__name__)
 
 FUNCTIONS = available_functions
 
@@ -37,9 +34,8 @@ class FunctionCalling:
             )
 
         messages.append({"role": "user", "content": user_message})
-        _LOGGER.debug("Messages %s", messages)
 
-
+        print(messages)
         # First call to API with initial user request
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
