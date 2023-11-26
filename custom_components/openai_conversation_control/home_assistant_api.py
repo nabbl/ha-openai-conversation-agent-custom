@@ -1,4 +1,6 @@
 import json
+import requests
+
 
 from homeassistant.core import HomeAssistant, State
 from homeassistant.helpers.json import JSONEncoder
@@ -59,7 +61,7 @@ class HomeAssistantApi:
             entity_list: list[State] = [
                 entity
                 for entity in self.all_entities
-                if entity.entity_id.startswith(entity_type)
+                if entity.entity_id.startswith(entity_type_dict[entity_type])
                 and entity.state != "unavailable"
             ]
 
@@ -165,7 +167,7 @@ class HomeAssistantApi:
         print(shutter_list)
         for shutter in shutter_list:
             service_data = {"entity_id": shutter}
-            self.hass.services.call("cover", "close", service_data)
+            self.hass.services.call("cover", "close_cover", service_data)
 
         action_performed = {
             "action_performed": "The specified shutters have been closed",
@@ -180,8 +182,34 @@ class HomeAssistantApi:
 
         for shutter in shutter_list:
             service_data = {"entity_id": shutter}
-            self.hass.services.call("cover", "open", service_data)
+            self.hass.services.call("cover", "open_cover", service_data)
         action_performed = {
             "action_performed": "The specified shutters have been opened",
         }
         return json.dumps(action_performed)
+    
+    # def get_current_weather(self):
+    #     """: param location:
+    #     :return: returns a message to GPT with the weather information output
+    #     """
+
+    #     try:
+    #         response = requests.get("https://api.open-meteo.com/v1/forecast?latitude=47.59110737062701&longitude=8.301021609111338&hourly=temperature_2m&timezone=Europe%2FBerlin", timeout=10)
+    #         return response.json()
+    #     except requests.exceptions.ConnectionError:
+    #         _LOGGER.error("No route to device '%s'", self._resource)
+
+
+    # {
+    #   "name": "get_current_weather",
+    #   "description": "Get the current weather for the given location, the location are pre defined coordinates for: 'Küssaberg, Germany'",
+    #   "parameters": {
+    #     "type": "object",
+    #     "properties": {},
+    #       "unit": {
+    #         "type": "string",
+    #         "enum": ["celsius"]
+    #       }
+    #     },
+    #     "required": ["location"]
+    # }

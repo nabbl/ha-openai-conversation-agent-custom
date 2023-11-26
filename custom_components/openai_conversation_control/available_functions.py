@@ -156,5 +156,5 @@ available_functions = [
             },
             "required": ["shutters"],
         },
-    },
+    }
 ]
